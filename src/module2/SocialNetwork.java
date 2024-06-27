@@ -41,6 +41,11 @@ public class SocialNetwork {
     public void addLink(int member1, int member2, int timestamp) {
         this.validate(member1);
         this.validate(member2);
+
+        if (timestamp <= 0) {
+            throw new IllegalArgumentException("Timestamp must be greater than 1");
+        }
+
         final int root1 = this.find(member1 - 1);
         final int root2 = this.find(member2 - 1);
 
@@ -64,7 +69,17 @@ public class SocialNetwork {
 
     public static void main(String[] args) {
         final int n = Integer.parseInt(StdIn.readString());
+
+        if (n <= 0) {
+            throw new IllegalArgumentException("N must be greater than 1");
+        }
+
         final int m = Integer.parseInt(StdIn.readString());
+
+        if (m <= 0) {
+            throw new IllegalArgumentException("M must be greater than 1");
+        }
+
         final SocialNetwork network = new SocialNetwork(n);
 
         for (int i = 0; i < m; ++i) {
